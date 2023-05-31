@@ -38,10 +38,10 @@ pub mod sys {
             }
         }
         // 方法函数
-        pub fn spawn(&mut self, f: fn() -> ()) {
+        pub fn spawn(&mut self, name: String, f: fn(String) -> ()) {
             use std::thread;
             let handle = thread::spawn(move || {
-                f();
+                f(name);
             });
             self.vec.push(Some(handle));
             ()
